@@ -1,3 +1,6 @@
+import wixData from 'wix-data';
+import { COLLECTIONS } from 'public/constants/collections';
+
 /**
  * Repository Leads.
  * Responsabilité : centraliser les opérations de persistance pour la collection Leads.
@@ -9,7 +12,7 @@
  * @returns {Promise<Object>} Lead créé.
  */
 export async function createLead(payload) {
-  // TODO: Implémenter l'insertion dans wix-data (collection Leads).
+  return wixData.insert(COLLECTIONS.LEADS, payload, { suppressAuth: true });
 }
 
 /**
@@ -18,5 +21,5 @@ export async function createLead(payload) {
  * @returns {Promise<Object|null>} Lead trouvé ou null.
  */
 export async function getLeadById(leadId) {
-  // TODO: Implémenter la lecture d'un lead par ID.
+  return wixData.get(COLLECTIONS.LEADS, leadId);
 }

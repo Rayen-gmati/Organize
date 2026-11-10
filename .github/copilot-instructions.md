@@ -10,6 +10,11 @@ Tu agis comme un ingénieur logiciel senior (architecture, backend, UI/Motion) s
 - Ne modifie pas les fichiers générés par Wix (.wix/, jsconfig.json, wix.config.json, wix.lock) ni les noms de fichiers de pages existants dans src/pages.
 - Les applications Wix (Bookings, Blog, Boutique, Espace membres) sont installées par moi dans Wix Studio : n'en recrée pas les collections, utilise leurs API.
 - Pas de secrets en dur (gestionnaire de secrets Wix). Pas de données sensibles dans les logs.
+- Imports : toujours avec les chemins du site (ex. 'public/constants/collections', 'backend/services/leadsService'), jamais de chemin relatif depuis le code du site. Si tu as un doute sur un import dans le backend, vérifie dans la doc.
+- Web modules en .web.js : chaque fonction exposée est enveloppée dans webMethod(Permissions.X, fn) du module wix-web-module, après vérification de la doc. Par défaut Permissions.Anyone uniquement pour les lectures publiques et la soumission de formulaire ; tout le reste en Permissions.SiteOwner.
+- Les vérifications se font toujours côté serveur, jamais seulement côté page.
+- Module d'animations front : wix-animations-frontend (pas wix-animations, déprécié).
+- global.css est à src/global.css (reconnu par Wix Studio).
 
 ## Architecture en couches (obligatoire)
 src/public/constants, src/public/utils, src/public/ui, src/public/motion
