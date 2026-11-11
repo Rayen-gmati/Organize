@@ -1,5 +1,6 @@
 import wixData from 'wix-data';
 import { COLLECTIONS } from 'public/constants/collections';
+import { FIELDS } from 'public/constants/fields';
 
 /**
  * Repository FAQ.
@@ -13,8 +14,8 @@ import { COLLECTIONS } from 'public/constants/collections';
 export async function listPublishedFaq() {
   const { items } = await wixData
     .query(COLLECTIONS.FAQ)
-    .eq('published', true)
-    .ascending('order')
+    .eq(FIELDS.faq.PUBLISHED, true)
+    .ascending(FIELDS.faq.ORDER)
     .find();
 
   return items;

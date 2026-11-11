@@ -9,7 +9,13 @@
  * @returns {string} Nom formaté.
  */
 export function formatDisplayName(fullName) {
-  // TODO: Implémenter le formatage de nom.
+  if (!fullName) {
+    return '';
+  }
+
+  return String(fullName)
+    .trim()
+    .replace(/\s+/g, ' ');
 }
 
 /**
@@ -18,5 +24,40 @@ export function formatDisplayName(fullName) {
  * @returns {string} Téléphone formaté.
  */
 export function formatPhone(phone) {
-  // TODO: Implémenter le formatage de téléphone.
+  if (!phone) {
+    return '';
+  }
+
+  return String(phone).replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Convertit un texte de fonctionnalités séparé par des retours à la ligne en tableau.
+ * @param {string|null|undefined} value Texte brut.
+ * @returns {string[]} Tableau de fonctionnalités.
+ */
+export function featuresToArray(value) {
+  if (!value) {
+    return [];
+  }
+
+  return String(value)
+    .split(/\r?\n/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+/**
+ * Convertit un tableau de fonctionnalités en texte séparé par des retours à la ligne.
+ * @param {string[]|null|undefined} value Tableau de fonctionnalités.
+ * @returns {string} Texte brut.
+ */
+export function featuresToText(value) {
+  if (!value) {
+    return '';
+  }
+
+  return Array.isArray(value)
+    ? value.map((item) => String(item).trim()).filter(Boolean).join('\n')
+    : String(value).trim();
 }

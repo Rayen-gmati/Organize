@@ -1,5 +1,6 @@
 import wixData from 'wix-data';
 import { COLLECTIONS } from 'public/constants/collections';
+import { FIELDS } from 'public/constants/fields';
 
 /**
  * Repository TeamMembers.
@@ -13,7 +14,7 @@ import { COLLECTIONS } from 'public/constants/collections';
 export async function listTeamMembers() {
   const { items } = await wixData
     .query(COLLECTIONS.TEAM_MEMBERS)
-    .ascending('order')
+    .ascending(FIELDS.teamMembers.ORDER)
     .find();
 
   return items;

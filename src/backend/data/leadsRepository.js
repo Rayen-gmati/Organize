@@ -1,5 +1,6 @@
 import wixData from 'wix-data';
 import { COLLECTIONS } from 'public/constants/collections';
+import { FIELDS } from 'public/constants/fields';
 
 /**
  * Repository Leads.
@@ -22,4 +23,19 @@ export async function createLead(payload) {
  */
 export async function getLeadById(leadId) {
   return wixData.get(COLLECTIONS.LEADS, leadId);
+}
+
+/**
+ * Liste les leads selon un statut.
+ * @param {string} status Statut du lead.
+ * @returns {Promise<Array>} Leads trouvés.
+ */
+export async function listLeadsByStatus(status) {
+  const { items } = await wixData
+    .query(COLLECTIONS.LEADS)
+    .eq(FIELDS.leads.STATUS, status)
+    .descending('_createdDate')
+    .find();
+
+  return items;
 }

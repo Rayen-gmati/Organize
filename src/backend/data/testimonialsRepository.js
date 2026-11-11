@@ -1,5 +1,6 @@
 import wixData from 'wix-data';
 import { COLLECTIONS } from 'public/constants/collections';
+import { FIELDS } from 'public/constants/fields';
 
 /**
  * Repository Testimonials.
@@ -13,8 +14,8 @@ import { COLLECTIONS } from 'public/constants/collections';
 export async function listTestimonials() {
   const { items } = await wixData
     .query(COLLECTIONS.TESTIMONIALS)
-    .eq('published', true)
-    .ascending('order')
+    .eq(FIELDS.testimonials.PUBLISHED, true)
+    .ascending(FIELDS.testimonials.ORDER)
     .find();
 
   return items;

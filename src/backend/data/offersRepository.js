@@ -1,5 +1,6 @@
 import wixData from 'wix-data';
 import { COLLECTIONS } from 'public/constants/collections';
+import { FIELDS } from 'public/constants/fields';
 
 /**
  * Repository Offers.
@@ -13,8 +14,8 @@ import { COLLECTIONS } from 'public/constants/collections';
 export async function listActiveOffers() {
   const { items } = await wixData
     .query(COLLECTIONS.OFFERS)
-    .eq('published', true)
-    .ascending('order')
+    .eq(FIELDS.offers.PUBLISHED, true)
+    .ascending(FIELDS.offers.ORDER)
     .find();
 
   return items;

@@ -1,5 +1,6 @@
 import wixData from 'wix-data';
 import { COLLECTIONS } from 'public/constants/collections';
+import { FIELDS } from 'public/constants/fields';
 
 /**
  * Repository SiteSettings.
@@ -40,4 +41,40 @@ export async function upsertSiteSettings(payload) {
   }
 
   return insertSiteSettings(payload);
+}
+
+/**
+ * Récupère l'email de contact principal.
+ * @returns {Promise<string|null>} Email de contact.
+ */
+export async function getContactEmail() {
+  const settings = await getSiteSettings();
+  return settings ? settings[FIELDS.siteSettings.CONTACT_EMAIL] : null;
+}
+
+/**
+ * Récupère le numéro de téléphone principal.
+ * @returns {Promise<string|null>} Numéro de téléphone.
+ */
+export async function getPhoneNumber() {
+  const settings = await getSiteSettings();
+  return settings ? settings[FIELDS.siteSettings.PHONE_NUMBER] : null;
+}
+
+/**
+ * Récupère l'URL de l'image du logo.
+ * @returns {Promise<string|null>} URL de l'image du logo.
+ */
+export async function getLogoImage() {
+  const settings = await getSiteSettings();
+  return settings ? settings[FIELDS.siteSettings.LOGO_IMAGE] : null;
+}
+
+/**
+ * Récupère les horaires d'ouverture.
+ * @returns {Promise<Object|null>} Horaires d'ouverture.
+ */
+export async function getBusinessHours() {
+  const settings = await getSiteSettings();
+  return settings ? settings[FIELDS.siteSettings.BUSINESS_HOURS] : null;
 }
