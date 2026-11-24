@@ -6,10 +6,60 @@
           "invoke": true
         },
         "siteMember": {
+          "invoke": false
+        },
+        "anonymous": {
+          "invoke": false
+        }
+      }
+    },
+    "backend/api/leads.web.js": {
+      "submitContactLead": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
           "invoke": true
         },
         "anonymous": {
           "invoke": true
+        }
+      },
+      "submitAuditLead": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": true
+        },
+        "anonymous": {
+          "invoke": true
+        }
+      }
+    },
+    "backend/api/content.web.js": {
+      "getHomeContent": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": true
+        },
+        "anonymous": {
+          "invoke": true
+        }
+      }
+    },
+    "backend/seed/seed.web.js": {
+      "runSeed": {
+        "siteOwner": {
+          "invoke": true
+        },
+        "siteMember": {
+          "invoke": false
+        },
+        "anonymous": {
+          "invoke": false
         }
       }
     }

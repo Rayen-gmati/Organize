@@ -1,12 +1,29 @@
+import { listActiveOffers } from 'backend/data/offersRepository';
+import { listPublishedFaq } from 'backend/data/faqRepository';
+import { listTestimonials } from 'backend/data/testimonialsRepository';
+import { getSiteSettings } from 'backend/data/settingsRepository';
+
 /**
  * Service Content.
- * Responsabilité : assembler les données de contenu à exposer au front.
+ * Responsabilité : assembler les données publiques de la page Accueil.
  */
 
 /**
- * Récupère le contenu de la page d'accueil.
- * @returns {Promise<Object>} Agrégat de contenu Home.
+ * Récupère les offres, FAQ, témoignages publiés et paramètres globaux.
+ * @returns {Promise<Object>} Contenu agrégé de la page d'accueil.
  */
 export async function getHomeContent() {
-  // TODO: Implémenter l'orchestration des repositories de contenu Home.
+  const [offers, faq, testimonials, settings] = await Promise.all([
+    listActiveOffers(),
+    listPublishedFaq(),
+    listTestimonials(),
+    getSiteSettings()
+  ]);
+
+  return {
+    offers,
+    faq,
+    testimonials,
+    settings: settings || null
+  };
 }

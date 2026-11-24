@@ -11,6 +11,7 @@ import { insertOffer, listActiveOffers } from 'backend/data/offersRepository';
 import { insertFaq, listPublishedFaq } from 'backend/data/faqRepository';
 import { insertSiteSettings, getSiteSettings } from 'backend/data/settingsRepository';
 import { insertTestimonial, listTestimonials } from 'backend/data/testimonialsRepository';
+import { webMethod, Permissions } from 'wix-web-module';
 
 const TEAM_MEMBERS = [
   {
@@ -134,11 +135,7 @@ async function hasCollectionItems(collectionId) {
   return items.length > 0;
 }
 
-/**
- * Lance l'initialisation des données de référence.
- * @returns {Promise<Object>} Résumé d'initialisation.
- */
-export async function runSeed() {
+async function runSeedHandler() {
   const created = {
     teamMembers: [],
     offers: [],
@@ -211,3 +208,5 @@ export async function runSeed() {
 
   return created;
 }
+
+export const runSeed = webMethod(Permissions.Admin, runSeedHandler);

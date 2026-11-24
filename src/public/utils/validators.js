@@ -9,7 +9,7 @@
  * @returns {boolean} True si la valeur est valide.
  */
 export function isNonEmpty(value) {
-  // TODO: Implémenter la validation de texte non vide.
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
 /**
@@ -18,5 +18,10 @@ export function isNonEmpty(value) {
  * @returns {boolean} True si le format est valide.
  */
 export function isEmail(value) {
-  // TODO: Implémenter la validation d'email.
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const email = value.trim();
+  return email.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
